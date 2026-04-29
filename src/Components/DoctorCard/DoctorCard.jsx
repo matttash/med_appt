@@ -1,31 +1,32 @@
+import { useState } from "react";
+import AppointmentForm from "../AppointmentForm/AppointmentForm";
 import "./DoctorCard.css";
 
 function DoctorCard({ doctor }) {
-  return (
-    <div className="doctor-card">
-      <img
-        src={doctor.image}
-        alt={doctor.name}
-        className="doctor-image"
-      />
 
-      <h2>{doctor.name}</h2>
+ const [showForm,setShowForm] = useState(false);
 
-      <p><strong>Specialty:</strong> {doctor.specialty}</p>
+ return (
+   <div className="doctor-card">
 
-      <p><strong>Experience:</strong> {doctor.experience} years</p>
+     <h2>{doctor.name}</h2>
+     <p>{doctor.specialty}</p>
+     <p>{doctor.experience} years</p>
+     <p>⭐ {doctor.rating}</p>
 
-      <p><strong>Rating:</strong> ⭐ {doctor.rating}</p>
+     <button onClick={() => setShowForm(true)}>
+       Book Appointment
+     </button>
 
-      <p className="career-profile">
-        {doctor.profile}
-      </p>
+     {showForm && (
+       <AppointmentForm
+         doctorName={doctor.name}
+         onClose={() => setShowForm(false)}
+       />
+     )}
 
-      <button className="book-btn">
-        Book Appointment
-      </button>
-    </div>
-  );
+   </div>
+ );
 }
 
 export default DoctorCard;
