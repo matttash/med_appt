@@ -7,6 +7,7 @@ const app = express();
 
 app.set('view engine','ejs')
 app.use(express.static('public'))
+app.use("/api/doctors", require("./routes/doctor"));
 
 const PORT = process.env.PORT || 8181;
 

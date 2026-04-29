@@ -1,27 +1,27 @@
-const mongoose = require('mongoose');
-const mongoURI = "mongodb://root:rJClnwkRxnhPYgTUduOSO4hj@172.21.186.249:27017";
+const mongoose = require("mongoose");
 
-const connectToMongo = async (retryCount) => {
+// FIX: use lab-safe local fallback OR environment-safe URI
+const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/stayhealthybeta1";
+
+const connectToMongo = async (retryCount = 0) => {
     const MAX_RETRIES = 3;
-    const count = retryCount ?? 0;
+
     try {
-        await mongoose.connect(mongoURI, { dbName: 'stayhealthybeta1'});
-        console.info('Connected to Mongo Successfully')
+        await mongoose.connect(mongoURI, {
+            dbName: "stayhealthybeta1"
+        });
 
-        return;
+        console.log("✅ MongoDB Connected Successfully");
     } catch (error) {
-        console.error(error);
+        console.error("❌ MongoDB connection error:", error.message);
 
-        const nextRetryCount = count + 1;
-
-        if (nextRetryCount >= MAX_RETRIES) {
-            throw new Error('Unable to connect to Mongo!');
+        if (retryCount >= MAX_RETRIES) {
+            throw new Error("Unable to connect to Mongo!");
         }
 
-        console.info(`Retrying, retry count: ${nextRetryCount}`)
+        console.log(`🔁 Retrying MongoDB... (${retryCount + 1})`);
 
-        return await connectToMongo(nextRetryCount);
-
+        return connectToMongo(retryCount + 1);
     }
 };
 
