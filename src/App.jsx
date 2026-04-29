@@ -1,11 +1,11 @@
-import React from "react";
-import BookingConsultation from "./Components/BookingConsultation";
+import { Routes, Route } from "react-router-dom";
+import InstantConsultation from "./Components/InstantConsultationBooking/InstantConsultation";
 
 function App() {
   return (
-    <div>
-      <BookingConsultation />
-    </div>
+    <Routes>
+      <Route path="/instant-consultation" element={<InstantConsultation />} />
+    </Routes>
   );
 }
 
