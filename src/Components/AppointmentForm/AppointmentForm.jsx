@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AppointmentForm({ doctorName, onClose }) {
+function AppointmentForm({ doctorName, onClose, onBook }) {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -18,21 +18,39 @@ function AppointmentForm({ doctorName, onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if(
+    // Basic validation
+    if (
       !formData.name ||
       !formData.phone ||
       !formData.date ||
       !formData.time
-    ){
-      alert("Please fill all fields");
+    ) {
+      alert("Please fill in all fields");
       return;
     }
 
+    // Booking confirmation
     alert(
       `Appointment booked with ${doctorName} on ${formData.date} at ${formData.time}`
     );
 
-    onClose();
+    // Tell DoctorCard appointment was booked
+    if (onBook) {
+      onBook();
+    }
+
+    // Optional reset form
+    setFormData({
+      name: "",
+      phone: "",
+      date: "",
+      time: ""
+    });
+
+    // Close form
+    if (onClose) {
+      onClose();
+    }
   };
 
   return (
@@ -41,40 +59,64 @@ function AppointmentForm({ doctorName, onClose }) {
 
       <form onSubmit={handleSubmit}>
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Patient Name"
-          value={formData.name}
-          onChange={handleChange}
-        />
+        <div>
+          <label>Patient Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </div>
 
-        <input
-          type="tel"
-          name="phone"
-          placeholder="Phone Number"
-          value={formData.phone}
-          onChange={handleChange}
-        />
+        <div>
+          <label>Phone Number</label>
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Enter phone number"
+            value={formData.phone}
+            onChange={handleChange}
+          />
+        </div>
 
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleChange}
-        />
+        <div>
+          <label>Appointment Date</label>
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+          />
+        </div>
 
-        <select
-          name="time"
-          value={formData.time}
-          onChange={handleChange}
-        >
-          <option value="">Choose Time Slot</option>
-          <option>9:00 AM</option>
-          <option>11:00 AM</option>
-          <option>2:00 PM</option>
-          <option>4:00 PM</option>
-        </select>
+        <div>
+          <label>Time Slot</label>
+          <select
+            name="time"
+            value={formData.time}
+            onChange={handleChange}
+          >
+            <option value="">
+              Select a time
+            </option>
+            <option value="9:00 AM">
+              9:00 AM
+            </option>
+            <option value="11:00 AM">
+              11:00 AM
+            </option>
+            <option value="2:00 PM">
+              2:00 PM
+            </option>
+            <option value="4:00 PM">
+              4:00 PM
+            </option>
+          </select>
+        </div>
+
+        <br />
 
         <button type="submit">
           Confirm Appointment
