@@ -1,0 +1,27 @@
+.doctor-card{
+width:320px;
+padding:20px;
+margin:20px auto;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+text-align:center;
+background:white;
+}
+
+.doctor-image{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.career-profile{
+margin:12px 0;
+}
+
+.book-btn{
+padding:10px 18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
