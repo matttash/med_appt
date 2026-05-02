@@ -1,33 +1,62 @@
+/* MAIN CONTAINER */
 .profile-card {
-  width: 300px;
-  padding: 15px;
-  background: white;
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 20px;
+  background-color: #f5f5f5;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
 }
 
+/* HEADINGS */
+.profile-card h3 {
+  margin-top: 0;
+  text-align: center;
+}
+
+/* PROFILE VIEW TEXT */
 .profile-view p {
-  margin: 5px 0;
+  margin-bottom: 10px;
 }
 
+/* FORM */
 .profile-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin-top: 10px;
 }
 
-.profile-form input {
-  padding: 6px;
+/* LABELS */
+.profile-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* INPUT FIELDS */
+.profile-form input[type="text"],
+.profile-form input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 6px;
 }
 
+/* BUTTONS (COMMON STYLE) */
 .profile-form button,
 .profile-view button {
-  margin-top: 10px;
-  padding: 8px;
-  background: green;
+  width: 100%;
+  padding: 10px;
+  background-color: #2190ff;
   color: white;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
+  font-weight: bold;
+}
+
+/* BUTTON HOVER */
+.profile-form button:hover,
+.profile-view button:hover {
+  background-color: #1976d2;
 }
