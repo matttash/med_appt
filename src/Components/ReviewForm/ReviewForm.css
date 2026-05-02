@@ -1,0 +1,31 @@
+.review-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 400px;
+}
+
+.review-form {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-form label {
+  margin-top: 10px;
+}
+
+.review-form textarea {
+  height: 80px;
+  padding: 5px;
+}
+
+.review-form button {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
