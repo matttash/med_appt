@@ -8,20 +8,22 @@
 
 .nav-right {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   align-items: center;
 }
 
-.nav-right button {
+.dropdown {
+  position: relative;
+}
+
+.dropdown button {
   padding: 6px 10px;
   cursor: pointer;
 }
 
-.profile-dropdown {
-  position: relative;
-}
-
-.profile-dropdown .profile-card {
+/* dropdown panel positioning */
+.dropdown .reports-container,
+.dropdown .profile-card {
   position: absolute;
   right: 0;
   top: 40px;
