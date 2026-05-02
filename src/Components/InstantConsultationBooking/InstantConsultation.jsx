@@ -1,101 +1,102 @@
-import React, { useEffect, useState } from 'react';
-import './InstantConsultation.css';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-
-// ❌ REMOVED broken imports (they don't exist in your project)
+import React, { useEffect, useState } from "react";
+import "./InstantConsultation.css";
+import { useSearchParams } from "react-router-dom";
+import ReviewForm from "../ReviewForm/ReviewForm";
 
 const InstantConsultation = () => {
-    const [searchParams] = useSearchParams();
-    const [doctors, setDoctors] = useState([]);
-    const [filteredDoctors, setFilteredDoctors] = useState([]);
-    const [isSearched, setIsSearched] = useState(false);
+  const [searchParams] = useSearchParams();
+  const [doctors, setDoctors] = useState([]);
+  const [filteredDoctors, setFilteredDoctors] = useState([]);
+  const [isSearched, setIsSearched] = useState(false);
 
-    const navigate = useNavigate();
+  const getDoctorsDetails = () => {
+    fetch("https://api.npoint.io/9a5543d36f1460da2f63")
+      .then((res) => res.json())
+      .then((data) => {
+        setDoctors(data);
 
-    const getDoctorsDetails = () => {
-        fetch('https://api.npoint.io/9a5543d36f1460da2f63')
-            .then(res => res.json())
-            .then(data => {
+        if (searchParams.get("speciality")) {
+          const filtered = data.filter(
+            (doctor) =>
+              doctor.speciality.toLowerCase() ===
+              searchParams.get("speciality").toLowerCase()
+          );
 
-                setDoctors(data);
-
-                if (searchParams.get('speciality')) {
-                    const filtered = data.filter(
-                        doctor =>
-                            doctor.speciality.toLowerCase() ===
-                            searchParams.get('speciality').toLowerCase()
-                    );
-
-                    setFilteredDoctors(filtered);
-                    setIsSearched(true);
-                } else {
-                    setFilteredDoctors([]);
-                    setIsSearched(false);
-                }
-            })
-            .catch(err => console.log(err));
-    };
-
-    const handleSearch = (searchText) => {
-        if (searchText === '') {
-            setFilteredDoctors([]);
-            setIsSearched(false);
+          setFilteredDoctors(filtered);
+          setIsSearched(true);
         } else {
-            const filtered = doctors.filter((doctor) =>
-                doctor.speciality.toLowerCase().includes(searchText.toLowerCase())
-            );
-
-            setFilteredDoctors(filtered);
-            setIsSearched(true);
+          setFilteredDoctors([]);
+          setIsSearched(false);
         }
-    };
+      })
+      .catch((err) => console.log(err));
+  };
 
-    useEffect(() => {
-        getDoctorsDetails();
-    }, [searchParams]);
+  const handleSearch = (searchText) => {
+    if (searchText === "") {
+      setFilteredDoctors([]);
+      setIsSearched(false);
+    } else {
+      const filtered = doctors.filter((doctor) =>
+        doctor.speciality.toLowerCase().includes(searchText.toLowerCase())
+      );
 
-    return (
-        <center>
-            <div className="searchpage-container">
+      setFilteredDoctors(filtered);
+      setIsSearched(true);
+    }
+  };
 
-                {/* TEMP SIMPLE SEARCH BOX (replaces missing component) */}
-                <input
-                    type="text"
-                    placeholder="Search doctor speciality..."
-                    onChange={(e) => handleSearch(e.target.value)}
-                />
+  useEffect(() => {
+    getDoctorsDetails();
+  }, [searchParams]);
 
-                <div className="search-results-container">
+  return (
+    <center>
+      <div className="searchpage-container">
 
-                    {isSearched ? (
-                        <center>
-                            <h2>
-                                {filteredDoctors.length} doctors are available{' '}
-                                {searchParams.get('location')}
-                            </h2>
+        {/* SIMPLE SEARCH INPUT (replaces missing components) */}
+        <input
+          type="text"
+          placeholder="Search doctor speciality..."
+          onChange={(e) => handleSearch(e.target.value)}
+        />
 
-                            <h3>
-                                Book appointments with minimum wait-time & verified doctor details
-                            </h3>
+        <div className="search-results-container">
+          {isSearched ? (
+            <center>
+              <h2>
+                {filteredDoctors.length} doctors available{" "}
+                {searchParams.get("location")}
+              </h2>
 
-                            {filteredDoctors.length > 0 ? (
-                                filteredDoctors.map((doctor) => (
-                                    <div key={doctor.name} className="doctor-card">
-                                        <h4>{doctor.name}</h4>
-                                        <p>{doctor.speciality}</p>
-                                    </div>
-                                ))
-                            ) : (
-                                <p>No doctors found.</p>
-                            )}
-                        </center>
-                    ) : (
-                        ''
-                    )}
-                </div>
-            </div>
-        </center>
-    );
+              <h3>
+                Book appointments with minimum wait-time & verified doctors
+              </h3>
+
+              {filteredDoctors.length > 0 ? (
+                filteredDoctors.map((doctor) => (
+                  <div key={doctor.name} className="doctor-card">
+                    <h4>{doctor.name}</h4>
+                    <p>{doctor.speciality}</p>
+                  </div>
+                ))
+              ) : (
+                <p>No doctors found.</p>
+              )}
+            </center>
+          ) : (
+            ""
+          )}
+        </div>
+
+        {/* ✅ REVIEW FORM INTEGRATION */}
+        <div style={{ marginTop: "40px" }}>
+          <ReviewForm />
+        </div>
+
+      </div>
+    </center>
+  );
 };
 
 export default InstantConsultation;

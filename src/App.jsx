@@ -7,7 +7,10 @@ function App() {
     <Router>
       <Notification>
         <Routes>
-          <Route path="/instant-consultation" element={<InstantConsultation />} />
+          <Route
+            path="/instant-consultation"
+            element={<InstantConsultation />}
+          />
         </Routes>
       </Notification>
     </Router>

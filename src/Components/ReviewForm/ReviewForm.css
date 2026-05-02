@@ -1,44 +1,91 @@
 .review-container {
-  width: 420px;
-  margin: 20px;
-  padding: 20px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 25px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.review-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.review-container p {
+  margin: 5px 0;
+  color: #555;
 }
 
 .review-form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.review-form label {
+  font-weight: bold;
+  color: #333;
 }
 
 .review-form input,
 .review-form textarea,
 .review-form select {
-  padding: 8px;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+.review-form input:focus,
+.review-form textarea:focus,
+.review-form select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
+
+.review-form textarea {
+  min-height: 90px;
+  resize: none;
 }
 
 .review-form button {
-  padding: 10px;
-  background: green;
+  padding: 12px;
+  background-color: #4caf50;
   color: white;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.review-form button:hover {
+  background-color: #45a049;
 }
 
 .submitted-box {
   margin-top: 20px;
   padding: 15px;
-  background: #f0f0f0;
   border-radius: 10px;
+  background: #f4f4f4;
+  border-left: 4px solid #4caf50;
+}
+
+.submitted-box h3 {
+  color: #2e7d32;
 }
 
 .disabled-btn {
   margin-top: 10px;
+  padding: 10px;
   background: gray;
   color: white;
-  padding: 10px;
   border: none;
+  border-radius: 8px;
+  cursor: not-allowed;
 }
