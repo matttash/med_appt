@@ -1,31 +1,44 @@
 .review-container {
+  width: 420px;
   margin: 20px;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   border-radius: 10px;
-  width: 400px;
 }
 
 .review-form {
-  margin-top: 15px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
-.review-form label {
-  margin-top: 10px;
-}
-
-.review-form textarea {
-  height: 80px;
-  padding: 5px;
+.review-form input,
+.review-form textarea,
+.review-form select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .review-form button {
-  margin-top: 15px;
   padding: 10px;
-  background-color: #4caf50;
+  background: green;
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.submitted-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.disabled-btn {
+  margin-top: 10px;
+  background: gray;
+  color: white;
+  padding: 10px;
+  border: none;
 }
