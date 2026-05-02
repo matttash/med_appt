@@ -3,9 +3,24 @@ import "./ReportsLayout.css";
 
 const ReportsLayout = () => {
   const reports = [
-    { id: 1, name: "Blood Test Report", date: "2026-04-10", status: "Completed" },
-    { id: 2, name: "X-Ray Report", date: "2026-04-15", status: "Pending" },
-    { id: 3, name: "Heart Checkup", date: "2026-04-20", status: "Completed" },
+    {
+      id: 1,
+      name: "Blood Test Report",
+      date: "2026-04-10",
+      file: "/patient_report.pdf",
+    },
+    {
+      id: 2,
+      name: "X-Ray Report",
+      date: "2026-04-15",
+      file: "/patient_report.pdf",
+    },
+    {
+      id: 3,
+      name: "Heart Checkup Report",
+      date: "2026-04-20",
+      file: "/patient_report.pdf",
+    },
   ];
 
   return (
@@ -18,7 +33,8 @@ const ReportsLayout = () => {
             <th>ID</th>
             <th>Report Name</th>
             <th>Date</th>
-            <th>Status</th>
+            <th>View</th>
+            <th>Download</th>
           </tr>
         </thead>
 
@@ -28,8 +44,28 @@ const ReportsLayout = () => {
               <td>{report.id}</td>
               <td>{report.name}</td>
               <td>{report.date}</td>
-              <td className={report.status.toLowerCase()}>
-                {report.status}
+
+              {/* VIEW */}
+              <td>
+                <a
+                  href={report.file}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="view-btn"
+                >
+                  View
+                </a>
+              </td>
+
+              {/* DOWNLOAD */}
+              <td>
+                <a
+                  href={report.file}
+                  download
+                  className="download-btn"
+                >
+                  Download
+                </a>
               </td>
             </tr>
           ))}

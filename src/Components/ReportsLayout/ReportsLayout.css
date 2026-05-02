@@ -1,11 +1,9 @@
 .reports-container {
-  width: 600px;
+  width: 650px;
   margin: 40px auto;
   padding: 20px;
   background: #f5f5f5;
   border-radius: 10px;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .reports-container h2 {
@@ -30,13 +28,20 @@
   color: white;
 }
 
-/* STATUS COLORS */
-.completed {
-  color: green;
-  font-weight: bold;
+/* VIEW BUTTON */
+.view-btn {
+  padding: 5px 10px;
+  background: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
-.pending {
-  color: orange;
-  font-weight: bold;
+/* DOWNLOAD BUTTON */
+.download-btn {
+  padding: 5px 10px;
+  background: #ff5722;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
 }
